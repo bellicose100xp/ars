@@ -45,6 +45,19 @@ class Normalizer():
         return (inputs - obs_mean) / obs_std
 
 # Building the AI
-
-        
+class Policy():
+    def __init__(self, input_size, output_size):
+        # theta is matrix of weights
+        self.theta = np.zeros((output_size, input_size))
+    
+    def evaluate(self, input, delta = None, directions = None):
+        if directions is None:
+            return self.theta.dot(input)
+        elif directions is 'positive':
+            return (self.theta + hp.noise*delta).dot(input)   
+        else:
+            return (self.theta - hp.noise*delta).dot(input)   
+    
+    def sample_deltas(self):
+        return 
         
